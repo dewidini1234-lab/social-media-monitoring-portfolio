@@ -5,6 +5,7 @@ MENJALANKAN
 Ekstrak seluruh ZIP, lalu buka index.html di Chrome atau Edge. Tidak memerlukan instalasi, build, atau koneksi internet.
 
 INTERAKSI
+Versi sederhana: satu slide ditampilkan setiap kali. Gunakan Kembali/Lanjut; tombol Daftar isi membuka seluruh navigasi. Tidak ada pergantian slide otomatis saat menggulir. Judul mengikuti bahasa ID/EN. Catatan sumber dan uraian tambahan tetap tersedia pada Baca detail & referensi.
 Navigasi 5 chapter / 18 slide; tombol Sebelumnya/Berikutnya; keyboard panah kiri/kanan, PageUp/PageDown, Home/End saat fokus pada halaman.
 ID/EN mengubah narasi dan elemen interaktif. Judul slide dan penamaan rujukan skripsi mempertahankan format yang disetujui.
 Klik screenshot untuk memperbesar; klik lagi untuk ukuran asli; Escape menutupnya.

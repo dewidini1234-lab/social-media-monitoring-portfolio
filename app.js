@@ -98,7 +98,7 @@
       ['DBI',text('Evaluasi sebaran dan pemisahan','Evaluate spread and separation'),text('Davies-Bouldin Index menggunakan sebaran anggota terhadap centroid dan jarak antarpusat. DBI mengevaluasi hasil; penetapan kelompok dilakukan oleh K-Means.','The Davies-Bouldin Index uses member spread around centroids and distances between centers. DBI evaluates the result; K-Means produces the groups.'),'dbi']
     ];
     const step=steps[algorithmStep];
-    return `<div class="visual-panel"><div class="step-tabs" role="group" aria-label="${text('Tahap analitik','Analytical stage')}">${steps.map((s,i)=>`<button data-step="${i}" class="${i===algorithmStep?'active':''}" aria-pressed="${i===algorithmStep}" aria-label="${esc(s[0])}">${i===4?'DBI':pad(i+1)}</button>`).join('')}</div><div class="step-canvas" aria-live="polite"><div class="step-count">${pad(algorithmStep+1)} / 05 · ${esc(step[0]).toUpperCase()}</div><h3>${step[1]}</h3><p>${step[2]}</p>${algorithmStep===0?'<div class="equation">x′ = (x − min) / (max − min)</div>':algorithmStep===2?'<div class="equation">d(x,c) = √Σ<sub>j=1…6</sub> (x<sub>j</sub> − c<sub>j</sub>)²</div>':algorithmStep===3?pills():''}${step[3]?imageButton(step[3],text('Lihat dokumentasi asli','View original documentation')):''}</div><div class="algorithm-track" aria-hidden="true">${steps.map((_,i)=>`<span class="${i<=algorithmStep?'active':''}"></span>`).join('')}</div></div><p class="visual-caption">${text('Diagram menjelaskan proses. Arsip aplikasi tersedia terpisah melalui tombol dokumentasi.','The diagram explains the process. Original application archives are available separately through the documentation buttons.')}</p>`;
+    return `<div class="visual-panel"><div class="step-tabs" role="group" aria-label="${text('Tahap analitik','Analytical stage')}">${steps.map((s,i)=>`<button data-step="${i}" class="${i===algorithmStep?'active':''}" aria-pressed="${i===algorithmStep}" aria-label="${esc(s[0])}">${esc(s[0])}</button>`).join('')}</div><div class="step-canvas" aria-live="polite"><div class="step-count">${pad(algorithmStep+1)} / 05 · ${esc(step[0]).toUpperCase()}</div><h3>${step[1]}</h3><p>${step[2]}</p>${algorithmStep===0?'<div class="equation">x′ = (x − min) / (max − min)</div>':algorithmStep===2?'<div class="equation">d(x,c) = √Σ<sub>j=1…6</sub> (x<sub>j</sub> − c<sub>j</sub>)²</div>':algorithmStep===3?pills():''}${step[3]?imageButton(step[3],text('Lihat dokumentasi asli','View original documentation')):''}</div><div class="algorithm-track" aria-hidden="true">${steps.map((_,i)=>`<span class="${i<=algorithmStep?'active':''}"></span>`).join('')}</div></div><p class="visual-caption">${text('Diagram menjelaskan proses. Arsip aplikasi tersedia terpisah melalui tombol dokumentasi.','The diagram explains the process. Original application archives are available separately through the documentation buttons.')}</p>`;
   }
   const clusters = {
     high:{count:2,labelID:'Kinerja Tinggi',labelEN:'High Performance',members:['Pamanukan','Purwadadi']},
@@ -133,66 +133,81 @@
     }
   }
 
+  const chapterNamesID=['Pengenalan Proyek','Desain Sistem','Eksplorasi Aplikasi','Analisis Data','Evaluasi & Kontribusi'];
+  const titlesID=['','Social Media Activity Monitoring & Clustering System','Ringkasan Proyek','Latar Belakang Proyek','Solusi yang Dikembangkan','Hak Akses & Tata Kelola Data','Arsitektur Sistem','Dashboard Admin Humas Polres','Pengelolaan Data Terpusat','Integrasi API Instagram','Dashboard Admin Humas Polsek','Ranking & Laporan','Komunikasi Internal','Dari Rekap Menjadi Dataset','Cara Kerja K-Means','Hasil Klasterisasi & Insight','Teknologi & Rekayasa Sistem','Pengujian & Hasil Proyek','Kontribusi & Penutup'];
+  const subtitlesID=['','Sistem informasi berbasis web untuk Humas Polres Subang.','Cakupan sistem, pengguna, dan tujuan analisis.','Memahami proses rekap sebelum aplikasi dikembangkan.','Menghubungkan pengelolaan rekap dengan hasil analisis.','Kewenangan yang jelas dan proses data yang dapat ditelusuri.','Hubungan antarmuka, logika aplikasi, basis data, dan integrasi.','Ringkasan aktivitas publikasi seluruh Polsek dalam cakupan sistem.','Mengelola data Polsek, penugasan pengguna, dan rekap publikasi.','Fitur pendukung pengambilan informasi publikasi Instagram.','Pemantauan yang berfokus pada Polsek penugasan akun.','Menyajikan hasil analisis untuk monitoring dan pelaporan.','Pengumuman terarah dan percakapan sesuai konteks Polsek.','Menyiapkan data yang memenuhi syarat sebelum klasterisasi.','Mengelompokkan Polsek berdasarkan enam variabel publikasi.','Membaca hasil dengan periode dan sumber yang jelas.','Teknologi yang digunakan dan tanggung jawab setiap komponen.','Bukti pengujian penelitian dan batas penerapannya pada versi final.','Menghubungkan kebutuhan organisasi dengan aplikasi yang dikembangkan.'];
+  const noteLabels={2:['Tentang variabel publikasi','About publication variables'],4:['Ketentuan data untuk analisis','Data eligibility for analysis'],5:['Perbedaan hak akses dalam sumber','Access-policy source differences'],8:['Perbedaan status rekap antar-sumber','Record-status source differences'],9:['Konteks akun Instagram','Instagram account context'],10:['Diagram akses final Polsek','Final Polsek access diagram'],15:['Perbedaan nilai DBI antar-sumber','DBI source differences'],17:['Konteks pengujian versi skripsi','Thesis-version testing context']};
+  function slideTitle(s){return language==='id'?titlesID[s.id]:s.id===1?titlesID[1]:s.title;}
+  function chapterTitle(index){return language==='id'?chapterNamesID[index]:chapters[index].name;}
   function renderSlides() {
-    $('#presentation').innerHTML = content.map(s=>{
-      const chapter=chapters[chapterFor(s.id)];
-      const narrative=language==='id'?s.bodyID:s.bodyEN;
-      const parts=narrative.split(/\n\s*\n/);
-      const rest=(s.id===1?parts:parts.slice(1)).join('\n\n');
+    $('#presentation').innerHTML=content.map(s=>{
+      const chapterIndex=chapterFor(s.id);
+      const parts=(language==='id'?s.bodyID:s.bodyEN).split(/\n\s*\n/);
+      const visibleCount=s.id===1?1:2;
+      const visible=parts.slice(0,visibleCount).join('\n\n');
+      const rest=parts.slice(visibleCount).join('\n\n');
       const note=notes[s.id];
-      const title=s.id===1?'Social Media Activity Monitoring & Clustering System':s.title;
-      return `<section class="slide ${s.id===1?'cover':s.id===18?'closing':''}" id="${hashId(s.id)}" data-slide="${s.id}" aria-labelledby="title-${s.id}"><div class="slide-inner"><div class="slide-copy"><div class="eyebrow">${chapter.name} · ${pad(s.id)} / 18</div><${s.id===1?'h1':'h2'} class="slide-title" id="title-${s.id}">${esc(title)}</${s.id===1?'h1':'h2'}><p class="slide-subtitle">${inline(s.subtitle)}</p><div class="slide-lede">${paragraphs(parts[0])}</div>${rest?`<details class="story"><summary>${text('Baca cerita proyek','Read the project story')}</summary>${paragraphs(rest)}</details>`:''}${[2,8,13].includes(s.id)?platformList():''}${s.id===1?`<div class="author"><div class="author-mark" aria-hidden="true">DE</div><div><strong>Dewi Embun Permata Dini, S.Kom.</strong><span>${text('Sistem Informasi','Information Systems')} · Universitas Mandiri</span></div></div><details class="official-title"><summary>${text('Judul resmi skripsi','Official research title')}</summary>Implementasi Algoritma K-Means untuk Klasterisasi Aktivitas Viralisasi Media Sosial Polsek pada Sistem Informasi Berbasis Web di Humas Polres Subang.</details>`:''}${s.id===18?`<div class="closing-name">Dewi Embun Permata Dini, S.Kom.</div><div class="closing-degree">${text('Sistem Informasi','Information Systems')} · Universitas Mandiri · 2026</div>`:''}${note?`<aside class="source-note"><strong>${text('Konteks & catatan sumber','Context & source note')}</strong>${esc(note[language==='id'?0:1])}</aside>`:''}<details class="project-notes"><summary>${text('Untuk recruiter & referensi','For recruiters & references')}</summary><span class="note-heading">${text('Yang ditunjukkan proyek ini','What this project demonstrates')}</span>${paragraphs(language==='id'?s.hrID:hrEN[s.id-1])}<span class="note-heading">${text('Rujukan skripsi & dokumentasi','Thesis & documentation references')}</span>${references(s.references)}</details></div><div class="slide-visual" id="visual-${s.id}">${visual(s.id)}</div></div></section>`;
+      const title=slideTitle(s);
+      const official='Implementasi Algoritma K-Means untuk Klasterisasi Aktivitas Viralisasi Media Sosial Polsek pada Sistem Informasi Berbasis Web di Humas Polres Subang.';
+      return `<section class="slide ${s.id===1?'cover':s.id===18?'closing':''}" id="${hashId(s.id)}" data-slide="${s.id}" aria-labelledby="title-${s.id}" ${s.id!==active?'hidden':''}><div class="slide-inner"><div class="slide-copy"><div class="eyebrow">${text('Bab','Chapter')} ${pad(chapterIndex+1)} · ${chapterTitle(chapterIndex)}</div><${s.id===1?'h1':'h2'} class="slide-title" id="title-${s.id}">${esc(title)}</${s.id===1?'h1':'h2'}><p class="slide-subtitle">${inline(language==='id'?subtitlesID[s.id]:s.subtitle)}</p><div class="slide-lede">${paragraphs(visible)}</div>${[8,13].includes(s.id)?`<p class="variable-list"><strong>${text('Jumlah publikasi:','Publication counts:')}</strong> ${platforms.join(' · ')}</p>`:''}${s.id===1?`<div class="author"><div class="author-mark" aria-hidden="true">DE</div><div><strong>Dewi Embun Permata Dini, S.Kom.</strong><span>${text('Sistem Informasi','Information Systems')} · Universitas Mandiri · 2026</span></div></div>`:''}${s.id===18?`<div class="closing-name">Dewi Embun Permata Dini, S.Kom.</div><div class="closing-degree">${text('Sistem Informasi','Information Systems')} · Universitas Mandiri · 2026</div>`:''}${note?`<button class="source-indicator" data-open-notes="${s.id}">${esc(noteLabels[s.id][language==='id'?0:1])}</button>`:''}<details class="project-notes"><summary>${text('Baca detail & referensi','Read details & references')}</summary><div class="notes-content">${s.id===1?`<h3>${text('Judul resmi skripsi','Official research title')}</h3><p>${official}</p>`:''}${rest?`<h3>${text('Penjelasan lengkap','Further explanation')}</h3>${paragraphs(rest)}`:''}${note?`<div class="source-note"><h3>${text('Catatan sumber','Source note')}</h3><p>${esc(note[language==='id'?0:1])}</p></div>`:''}<h3>${text('Untuk recruiter','For recruiters')}</h3>${paragraphs(language==='id'?s.hrID:hrEN[s.id-1])}<h3>${text('Referensi','References')}</h3>${references(s.references)}</div></details></div><div class="slide-visual" id="visual-${s.id}">${visual(s.id)}</div></div></section>`;
     }).join('');
     renderNavigation();
     document.documentElement.lang=language;
-    $('#previous-button').textContent=text('Sebelumnya','Previous');
-    $('#next-button').textContent=text('Berikutnya','Next');
-    $('#print-button').textContent=text('Cetak','Print');
+    $('#previous-button').textContent=text('Kembali','Previous');
+    $('#next-button').textContent=text('Lanjut','Next');
+    $('#print-button').textContent=text('Cetak materi','Print material');
     $('#fullscreen-button').setAttribute('aria-label',text('Layar penuh','Fullscreen'));
-    $('#menu-button').setAttribute('aria-label',text('Buka navigasi','Open navigation'));
+    $('#fullscreen-button').title=text('Layar penuh','Fullscreen');
+    $('#menu-label').textContent=text('Daftar isi','Contents');
+    $('#sidebar-caption').textContent=text('DAFTAR ISI','CONTENTS');
+    $('#close-menu-button').textContent=text('Tutup','Close');
+    $('#menu-button').setAttribute('aria-label',text('Buka daftar isi','Open contents'));
     $$('.language-control button').forEach(b=>{const on=b.dataset.language===language;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on);});
     updateActive(active);
     syncMobileInert();
   }
   function renderNavigation() {
-    $('#chapter-navigation').innerHTML=chapters.map((c,i)=>`<div class="chapter-group ${chapterFor(active)===i?'current':''}" data-chapter="${i}"><a class="chapter-link ${chapterFor(active)===i?'current':''}" href="#${hashId(c.first)}"><span class="chapter-index">${pad(i+1)}</span>${c.name}</a><div class="slide-links">${content.filter(s=>s.id>=c.first&&s.id<=c.last).map(s=>`<a class="slide-link ${s.id===active?'active':''}" href="#${hashId(s.id)}" ${s.id===active?'aria-current="step"':''}>${s.title}</a>`).join('')}</div></div>`).join('');
+    $('#chapter-navigation').innerHTML=chapters.map((c,i)=>`<div class="chapter-group ${chapterFor(active)===i?'current':''}" data-chapter="${i}"><a class="chapter-link ${chapterFor(active)===i?'current':''}" href="#${hashId(c.first)}"><span class="chapter-index">${pad(i+1)}</span>${chapterTitle(i)}</a><div class="slide-links">${content.filter(s=>s.id>=c.first&&s.id<=c.last).map(s=>`<a class="slide-link ${s.id===active?'active':''}" href="#${hashId(s.id)}" ${s.id===active?'aria-current="step"':''}>${s.id===1?text('Sampul proyek','Project cover'):esc(slideTitle(s))}</a>`).join('')}</div></div>`).join('');
   }
   function updateActive(n) {
     active=n;
-    const chapterIndex=chapterFor(n), chapter=chapters[chapterIndex];
+    const chapterIndex=chapterFor(n);
+    const selected=content.find(s=>s.id===n);
+    $$('.slide').forEach(s=>{s.hidden=Number(s.dataset.slide)!==n;});
     $('#slide-number').textContent=pad(n);
-    $('#current-chapter').textContent=chapter.name;
-    $('#control-chapter').textContent=chapter.name.toUpperCase();
-    $('#current-title').textContent=content.find(s=>s.id===n)?.title||'';
+    $('#current-chapter').textContent=`${text('Bab','Chapter')} ${pad(chapterIndex+1)} · ${chapterTitle(chapterIndex)}`;
+    $('#control-chapter').textContent=text('Slide','Slide');
+    $('#current-title').textContent=slideTitle(selected);
     $('#progress-fill').style.width=`${n/18*100}%`;
     $('#previous-button').disabled=n===1;
     $('#next-button').disabled=n===18;
     $$('.chapter-group').forEach(group=>{const on=Number(group.dataset.chapter)===chapterIndex;group.classList.toggle('current',on);$('.chapter-link',group).classList.toggle('current',on);});
     $$('.slide-link').forEach(link=>{const on=link.hash==='#'+hashId(n);link.classList.toggle('active',on);on?link.setAttribute('aria-current','step'):link.removeAttribute('aria-current');});
-    $('#slide-announcement').textContent=`${text('Slide','Slide')} ${n} ${text('dari','of')} 18: ${content.find(s=>s.id===n)?.title}`;
-    try { history.replaceState(null,'','#'+hashId(n)); } catch (_) {}
+    $('#slide-announcement').textContent=`${text('Slide','Slide')} ${n} ${text('dari','of')} 18: ${slideTitle(selected)}`;
+    try{history.replaceState(null,'','#'+hashId(n));}catch(_){}
   }
-  function go(n, smooth=true) {
-    const bounded=Math.max(1,Math.min(18,n));
-    updateActive(bounded);
-    $('#'+hashId(bounded))?.scrollIntoView({behavior:'instant',block:'start'});
-    if(menuOpen) toggleMenu(false);
+  function go(n) {
+    updateActive(Math.max(1,Math.min(18,n)));
+    if(menuOpen)toggleMenu(false);
+    window.scrollTo({top:0,behavior:'instant'});
   }
   function syncMobileInert() {
-    const mobile=matchMedia('(max-width:700px)').matches;
-    $('#sidebar').inert=mobile&&!menuOpen;
-    $('#presentation').inert=mobile&&menuOpen;
-    $('.presentation-controls').inert=mobile&&menuOpen;
-    $('.topbar').inert=mobile&&menuOpen;
+    $('#sidebar').inert=!menuOpen;
+    $('#presentation').inert=menuOpen;
+    $('.presentation-controls').inert=menuOpen;
+    $('.topbar').inert=menuOpen;
   }
   function toggleMenu(open) {
     menuOpen=open;
     $('#sidebar').classList.toggle('open',open);
+    $('#sidebar').setAttribute('aria-hidden',!open);
     $('#nav-backdrop').hidden=!open;
     $('#menu-button').setAttribute('aria-expanded',open);
+    document.body.style.overflow=open?'hidden':'';
     syncMobileInert();
-    if(open) $('#close-menu-button')?.focus(); else if(matchMedia('(max-width:700px)').matches) $('#menu-button').focus();
+    if(open)$('#close-menu-button')?.focus();else $('#menu-button').focus({preventScroll:true});
   }
+
   function openImage(key, trigger) {
     const a=assets[key];if(!a)return;
     imageTrigger=trigger;
@@ -209,6 +224,7 @@
     const nav=event.target.closest('a[href^="#slide-"]');
     if(nav){event.preventDefault();go(Number(nav.hash.match(/\d+/)[0]));return;}
     if(!button)return;
+    if(button.dataset.openNotes){const detail=$('#'+hashId(Number(button.dataset.openNotes))+' .project-notes');if(detail){detail.open=true;$('summary',detail).focus({preventScroll:true});}return;}
     if(button.dataset.language){if(language===button.dataset.language)return;language=button.dataset.language;try{localStorage.setItem('portfolio-language',language);}catch(_){}const n=active;renderSlides();go(n,false);return;}
     if(button.dataset.role){role=button.dataset.role;$('#visual-5').innerHTML=roleVisual();$(`[data-role="${role}"]`)?.focus();return;}
     if(button.dataset.management){management=button.dataset.management;$('#visual-8').innerHTML=managementVisual();$(`[data-management="${management}"]`)?.focus();return;}
@@ -236,10 +252,8 @@
     if(['ArrowLeft','PageUp'].includes(event.key)){event.preventDefault();go(active-1);}
     if(event.key==='Home'){event.preventDefault();go(1);}if(event.key==='End'){event.preventDefault();go(18);}
   });
-  let ticking=false;
-  window.addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{const point=window.scrollY+parseInt(getComputedStyle(document.documentElement).getPropertyValue('--top'))+Math.min(220,innerHeight*.25);let n=1;$$('.slide').forEach(s=>{if(s.offsetTop<=point)n=Number(s.dataset.slide);});if(n!==active)updateActive(n);ticking=false;});},{passive:true});
   window.addEventListener('hashchange',()=>{const n=Number(location.hash.match(/slide-(\d+)/)?.[1]);if(n>=1&&n<=18)go(n,false);});
-  window.addEventListener('resize',()=>{if(!matchMedia('(max-width:700px)').matches&&menuOpen)toggleMenu(false);syncMobileInert();});
+  window.addEventListener('resize',syncMobileInert);
   const previouslyOpen=[];
   window.addEventListener('beforeprint',()=>{$$('.story,.official-title').forEach(d=>{previouslyOpen.push([d,d.open]);d.open=true;});});
   window.addEventListener('afterprint',()=>{previouslyOpen.splice(0).forEach(([d,open])=>{d.open=open;});});
