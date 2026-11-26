@@ -1,41 +1,19 @@
 SOCIAL MEDIA ACTIVITY MONITORING & CLUSTERING SYSTEM
-Portfolio Dewi Embun Permata Dini, S.Kom. — 2026
+Dewi Embun Permata Dini, S.Kom. · Universitas Mandiri · 2026
 
-MENJALANKAN
-Ekstrak seluruh ZIP, lalu buka index.html di Chrome atau Edge. Tidak memerlukan instalasi, build, atau koneksi internet.
-
-INTERAKSI
-Versi sederhana: satu slide ditampilkan setiap kali. Gunakan Kembali/Lanjut; tombol Daftar isi membuka seluruh navigasi. Tidak ada pergantian slide otomatis saat menggulir. Judul mengikuti bahasa ID/EN. Catatan sumber dan uraian tambahan tetap tersedia pada Baca detail & referensi.
-Navigasi 5 chapter / 18 slide; tombol Sebelumnya/Berikutnya; keyboard panah kiri/kanan, PageUp/PageDown, Home/End saat fokus pada halaman.
-ID/EN mengubah narasi dan elemen interaktif. Judul slide dan penamaan rujukan skripsi mempertahankan format yang disetujui.
-Klik screenshot untuk memperbesar; klik lagi untuk ukuran asli; Escape menutupnya.
-Tersedia pemilihan role, area pengelolaan, ranking/laporan, tahap analitik, dan klaster hasil penelitian.
-Toolbar desktop menyediakan layar penuh dan cetak.
+PRATINJAU DAN NAVIGASI
+Buka index.html di peramban. Semua berkas JavaScript, CSS, dan gambar berada dalam folder proyek. Situs berjalan tanpa proses build.
+Gunakan Kembali, Lanjut, atau Daftar isi untuk berpindah di antara 18 slide. Tautan dengan akhiran #slide-15, misalnya, membuka hasil klasterisasi. Pada halaman, gunakan panah kiri/kanan, Page Up/Page Down, Home, atau End.
+Tombol ID/EN memilih bahasa. Detail dan sumber memuat penjelasan teknis serta rujukan. Di Daftar isi tersedia mode layar penuh dan fungsi cetak.
+Klik Perbesar untuk membuka tangkapan layar lengkap. Klik gambar untuk melihat ukuran aslinya. Gunakan Escape untuk menutup.
 
 GITHUB PAGES
-1. Unggah seluruh isi folder ini ke repository GitHub. index.html harus ada di root.
-2. Settings > Pages > Deploy from a branch > main > /(root) > Save.
-3. Gunakan URL GitHub Pages setelah deployment selesai.
-Semua aset menggunakan path relatif. .nojekyll disediakan. Website ini tanpa framework, CDN, API aktif, pelacakan, dan backend.
+Folder ini adalah repositori situs. Pada VS Code, gunakan Source Control untuk meninjau dan melakukan commit perubahan, lalu Sync Changes. GitHub Pages menyajikan index.html dari root cabang main setelah deployment selesai.
+Alamat publik: https://dewidini1234-lab.github.io/social-media-monitoring-portfolio/
 
-KONTEN
-Materi berasal dari 18 slide yang disetujui. Diagram menjelaskan sistem secara konseptual dan diberi label. Aplikasi penelitian PHP tidak dijalankan oleh website portfolio.
-
-SCREENSHOT
-Delapan gambar di assets/screenshots adalah salinan arsip aplikasi asli tanpa perubahan piksel. Tanggal, periode, dan keterbatasan ada di caption dan screenshots.js. Gambar ini belum diverifikasi sebagai koleksi final 34 screenshot November.
-Dataset Juli 2026 dan preprocessing September 2025 tidak dipasangkan sebagai sebelum/sesudah. Laporan September 2026/run #8 (7/8/6) hanya mendemonstrasikan fitur laporan.
-Screenshot final Polsek read-only, Instagram, dan komunikasi tanpa informasi privat belum tersedia; diagram konseptual digunakan sebagai penjelasan, bukan screenshot buatan.
-
-HASIL DAN CATATAN SUMBER
-Penelitian September 2025: 2 Tinggi, 3 Sedang, 16 Rendah; konvergen iterasi kedua.
-DBI skripsi: 0,4860797654. Catatan aplikasi run #11: 0,48621367. Screenshot DBI arsip menampilkan 0,4862 dan tidak membuktikan presisi nilai catatan run #11.
-25 skenario black box adalah hasil dalam skripsi. Kebijakan read-only final memerlukan bukti pengujian sesuai perilaku yang berubah.
-Perbedaan label Simpan Rekap / Simpan & Setujui dengan auto-approval pada kode layanan lokal tetap dijelaskan.
-
-BERKAS
-index.html: struktur. styles.css: tampilan responsif dan cetak.
-content.js: materi bilingual. screenshots.js: metadata gambar.
-app.js: navigasi, bahasa, visualisasi, dan lightbox.
-
-STATUS
-Implementasi lokal siap GitHub Pages; belum dipublikasikan ke akun GitHub.
+SUMBER MATERI
+Judul resmi skripsi mengikuti sampul, termasuk kata “Viralisasi”. Narasi Indonesia dan Inggris menjelaskan aplikasi penelitian. PHP, PDO, MySQL, Bootstrap, dan Chart.js adalah teknologi aplikasi penelitian. Situs presentasinya menggunakan HTML, CSS, dan Vanilla JavaScript.
+Delapan PNG di assets/screenshots merupakan salinan asli arsip aplikasi. Gambar lengkap, tanggal pengambilan, periode, dan keterangan tersedia melalui penampil gambar. Hubungan antara arsip ini dan koleksi final 34 tangkapan layar belum terverifikasi. Dasbor Polsek, integrasi Instagram, serta komunikasi internal dijelaskan melalui diagram atau uraian fitur.
+Slide 08 mencatat perbedaan antara dua tombol pada formulir rekap dan persetujuan otomatis setelah validasi pada kode layanan.
+Slide 15 membedakan DBI skripsi September 2025 (0,4860797654) dan catatan proses aplikasi #11 (0,48621367). Arsip gambar evaluasi hanya menampilkan 0,4862.
+Slide 17 menyajikan 25 skenario uji yang dilaporkan dalam skripsi. Skenario draf Polsek pada pengujian tersebut berbeda dari hak akses baca saja pada aplikasi akhir.

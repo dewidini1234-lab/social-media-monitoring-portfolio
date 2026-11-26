@@ -1,53 +1,63 @@
 window.PORTFOLIO_SCREENSHOTS = {
   "dashboard": {
-    "title": "Dashboard Admin Humas Polres",
+    "title": "Dasbor Humas Polres",
     "file": "assets/screenshots/dashboard-polres.png",
     "captured": "2026-08-24",
     "dataPeriod": "Juli 2026",
     "width": 1366,
     "height": 1413,
-    "limitation": "Arsip aplikasi; ringkasan 3 rekap dan 61 publikasi, bukan angka hasil penelitian September 2025. Pengumuman kosong.",
-    "limitationEN": "Original application archive, not the final November collection. The captured totals (3 records and 61 publications) describe July 2026, not the September 2025 research results."
+    "limitation": "Tiga rekap dan 61 publikasi tercatat pada saat gambar diambil.",
+    "limitationEN": "The dashboard contained three records and 61 posts when captured.",
+    "titleEN": "District dashboard",
+    "periodEN": "July 2026"
   },
   "recap": {
-    "title": "Rekap Aktivitas Admin Humas Polres",
+    "title": "Rekap aktivitas Polsek",
     "file": "assets/screenshots/activity-recaps.png",
     "captured": "2026-09-23",
-    "dataPeriod": "Berbagai periode / baris September 2026",
+    "dataPeriod": "Beberapa periode, termasuk September 2026",
     "width": 1366,
     "height": 1632,
-    "limitation": "Arsip aplikasi; rekap pusat dan enam nilai publikasi. Tidak membuktikan mekanisme dua tombol maupun akses final Polsek.",
-    "limitationEN": "Original central-record archive. It does not establish the behavior of the two saving buttons or the final Polsek read-only policy."
+    "limitation": "Tabel menampilkan rekap pusat dan jumlah publikasi tiap platform. Perilaku tombol simpan dijelaskan pada slide 08.",
+    "limitationEN": "The table shows central records and platform counts. Slide 08 explains how saving works.",
+    "titleEN": "Sector activity records",
+    "periodEN": "Multiple periods, including September 2026"
   },
   "dataset": {
-    "title": "Data dan Snapshot Dataset",
+    "title": "Snapshot dataset bulanan",
     "file": "assets/screenshots/dataset.png",
     "captured": "2026-09-10",
     "dataPeriod": "Juli 2026",
     "width": 1366,
     "height": 930,
-    "limitation": "Arsip aplikasi; memperlihatkan ketentuan Disetujui dan Polsek aktif. Dataset contoh Juli 2026, bukan hasil penelitian September 2025.",
-    "limitationEN": "Original dataset archive for July 2026. It shows approved-record and active-sector eligibility; this is a different period from the research results."
+    "limitation": "Rekap harus berstatus Disetujui dan berasal dari Polsek aktif. Contoh ini menggunakan data Juli 2026.",
+    "limitationEN": "Eligible records must be approved and belong to active sectors. This example uses July 2026 data.",
+    "titleEN": "Monthly dataset snapshot",
+    "periodEN": "July 2026"
   },
   "preprocessing": {
-    "title": "Detail Normalisasi Min-Max",
+    "title": "Hasil normalisasi Min-Max",
     "file": "assets/screenshots/preprocessing.png",
     "captured": "2026-09-25",
     "dataPeriod": "September 2025",
     "width": 1366,
     "height": 1327,
-    "limitation": "Arsip aplikasi preprocessing #10. Terlihat 21 Polsek, 6 fitur, 601 rekap Disetujui. Bukan verifikasi koleksi November.",
-    "limitationEN": "Original preprocessing #10 archive for September 2025: 21 police sectors and six features. It is not verified as part of the final November collection."
+    "limitation": "Proses normalisasi #10 mencakup 21 Polsek, enam variabel, dan 601 rekap berstatus Disetujui.",
+    "limitationEN": "Normalization process #10 covers 21 sectors, six variables, and 601 approved records.",
+    "titleEN": "Min-Max normalization results",
+    "periodEN": "September 2025"
   },
   "kmeans": {
-    "title": "Hasil Akhir K-Means",
+    "title": "Hasil klasterisasi K-Means",
     "file": "assets/screenshots/kmeans-results.png",
     "captured": "2026-09-27",
     "dataPeriod": "September 2025",
     "width": 1366,
     "height": 2537,
-    "limitation": "Arsip aplikasi; 2 Tinggi, 3 Sedang, 16 Rendah, iterasi 2. Nilai centroid aplikasi dalam screenshot tidak boleh diganti dengan angka naskah.",
-    "limitationEN": "Original application archive for September 2025, showing 2 High, 3 Medium, and 16 Low members and two iterations. Captured centroid values are retained unchanged."
+    "limitation": "Arsip menampilkan dua Polsek di klaster tinggi, tiga sedang, dan 16 rendah setelah dua iterasi.",
+    "limitationEN": "The archive shows two sectors in the high cluster, three in medium, and 16 in low after two iterations.",
+    "titleEN": "K-Means clustering results",
+    "periodEN": "September 2025"
   },
   "dbi": {
     "title": "Evaluasi Davies-Bouldin Index",
@@ -56,27 +66,33 @@ window.PORTFOLIO_SCREENSHOTS = {
     "dataPeriod": "September 2025",
     "width": 1366,
     "height": 2417,
-    "limitation": "Arsip aplikasi; tampilan DBI dibulatkan 0,4862. Tidak membuktikan presisi 0,48621367 atau identitas run #11 karena metadata run tidak terlihat pada gambar.",
-    "limitationEN": "Original September 2025 archive showing DBI rounded to 0.4862. The image does not establish the precision 0.48621367 or run #11 identity."
+    "limitation": "Gambar menampilkan DBI sebesar 0,4862 setelah pembulatan. Nomor proses dan nilai dengan presisi penuh tidak terlihat.",
+    "limitationEN": "The image shows a rounded DBI of 0.4862. It does not show the run number or the full-precision value.",
+    "titleEN": "Davies-Bouldin Index evaluation",
+    "periodEN": "September 2025"
   },
   "ranking": {
-    "title": "Ranking Admin Humas Polres",
+    "title": "Peringkat Polsek",
     "file": "assets/screenshots/ranking.png",
     "captured": "2026-10-02",
-    "dataPeriod": "September 2025 / K-Means #11",
+    "dataPeriod": "September 2025 · proses #11",
     "width": 1366,
     "height": 3280,
-    "limitation": "Arsip aplikasi; secara eksplisit menampilkan K-Means #11 dan periode September 2025. Tidak berasal dari koleksi November.",
-    "limitationEN": "Original application archive explicitly showing K-Means #11 and September 2025. It is not from the November screenshot collection."
+    "limitation": "Halaman mencantumkan periode September 2025 dan proses K-Means #11.",
+    "limitationEN": "The ranking page identifies September 2025 and K-Means run #11.",
+    "titleEN": "Sector rankings",
+    "periodEN": "September 2025 · run #11"
   },
   "report": {
-    "title": "Laporan Admin Humas Polres",
+    "title": "Laporan aktivitas Polsek",
     "file": "assets/screenshots/report.png",
     "captured": "2026-09-13",
-    "dataPeriod": "September 2026 / K-Means #8",
+    "dataPeriod": "September 2026 · proses #8",
     "width": 1366,
     "height": 2441,
-    "limitation": "Arsip aplikasi pada periode lain: distribusi 7 Tinggi, 8 Sedang, 6 Rendah. Gunakan hanya untuk eksplorasi fitur laporan, jangan sebagai bukti distribusi penelitian September 2025.",
-    "limitationEN": "Report archive for September 2026 / K-Means #8, with 7 High, 8 Medium, and 6 Low members. It demonstrates reporting functionality, not the September 2025 research distribution."
+    "limitation": "Contoh laporan ini mencatat 7 Polsek di klaster tinggi, 8 sedang, dan 6 rendah. Periode penelitian pada slide 15 adalah September 2025.",
+    "limitationEN": "This report records 7 sectors in the high cluster, 8 in medium, and 6 in low. The research on slide 15 covers September 2025.",
+    "titleEN": "Sector activity report",
+    "periodEN": "September 2026 · run #8"
   }
 };
