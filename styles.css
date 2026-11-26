@@ -53,6 +53,14 @@ h1,h2,h3,h4 { line-height: 1.12; }
 .slide-title { font-size:clamp(2.3rem,4.3vw,4.65rem); font-weight:620; letter-spacing:-.062em; line-height:1.02; text-wrap:balance; }
 .slide-lede { max-width:53ch; color:var(--muted); font-size:clamp(1rem,1.2vw,1.19rem); line-height:1.55; margin-top:20px; }
 .slide-lede p+p { margin-top:10px; }
+.demo-link {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:54px; padding:12px 28px; margin-top:20px;
+  background:var(--ink); color:var(--paper); font-size:1.125rem; font-weight:650; text-decoration:none;
+}
+.demo-link:hover { background:#303030; text-decoration:underline; }
+.demo-link:focus-visible { outline-color:var(--ink); }
+@media (max-width:540px) { .demo-link { width:100%; } }
 .takeaways { margin:20px 0 0; padding-left:1.15rem; }
 .takeaways li { padding:3px 0 3px 3px; }
 .author { margin-top:26px; border-left:2px solid var(--ink); padding-left:14px; font-size:.94rem; }

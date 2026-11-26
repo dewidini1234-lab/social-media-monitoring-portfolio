@@ -195,6 +195,7 @@
       <div class="slide-inner"><div class="slide-copy"><p class="eyebrow">${esc(label)}</p>
       <${heading} class="slide-title" id="title-${n}">${n===1?["Social Media","Activity Monitoring","& Clustering System"].map(part=>`<span class="title-line">${esc(part)}</span>`).join(" "):esc(title)}</${heading}>
       <div class="slide-lede">${paragraphs(langID?s.bodyID:s.bodyEN)}</div>
+      ${n===1?`<a class="demo-link" href="https://dewidini1234-lab.github.io/humas-polres-subang-demo/" target="_blank" rel="noopener noreferrer">${text('Coba demo aplikasi','Try the app demo')}<span class="sr-only">${text(' (buka di tab baru)',' (opens in a new tab)')}</span></a>`:''}
       ${bulletList?.length?`<ul class="takeaways">${bulletList.map(item=>`<li>${inline(item)}</li>`).join('')}</ul>`:''}
       ${n===1||n===18?author():''}</div>
       <div class="slide-visual" id="visual-${n}">${visual(n)}</div>
